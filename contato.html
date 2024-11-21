@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Entre em contato</title>
+    <style>
+        .shadow-cursor {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            transition: transform 0.05s ease, opacity 0.1s;
+            filter: blur(3px);
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="shadow-cursor" id="shadowCursor"></div>
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="logo">
+                        <a href="index.html">Projeto SD/IC</a>
+                    </div>
+                    <ul class="ul">
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="autores.html">Autores</a></li>
+                        <li><a href="manual.html">Manual</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=Gprj7569Mg4" target="_blank"><button class="btn-gradiente">Vídeo tutorial</button></a></li>
+                    </ul>
+                    <div class="menu-icon">
+                        <img src="img/menuicon.png" style="width: 70px; height: auto;" alt="ícone menu">
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <section class="formulario">
+            <div class="interface">
+                <h2>Entre em contato</h2>
+                <form id="contactForm" action="">
+                    <input type="text" id="name" placeholder="Seu nome:" required>
+                    <input type="email" id="email" placeholder="Seu e-mail:" required>
+                    <input type="tel" id="phone" placeholder="Seu celular:">
+                    <textarea id="message" placeholder="Sua mensagem:" required></textarea>
+                    <div class="btn-enviar"><input type="submit" value="ENVIAR"></div>
+                </form>
+                <div id="responseMessage" style="display: none;"></div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <h3>Medidor de nível da caixa d'água</h3>
+                    <p>Desenvolvido por estudantes do laboratório de Sistemas Digitais.</p>
+                    <p>Uma solução inovadora para monitoramento de reservatórios.</p>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Projeto SD/IC. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            const shadowCursor = document.getElementById('shadowCursor');
+    
+            document.addEventListener('mousemove', (event) => {
+                shadowCursor.style.left = `${event.pageX - shadowCursor.offsetWidth / 2}px`;
+                shadowCursor.style.top = `${event.pageY - shadowCursor.offsetHeight / 2}px`;
+            });
+    
+            const footer = document.querySelector('footer');
+    
+            footer.addEventListener('mouseover', () => {
+                footer.style.backgroundColor = '#aaaaaa'; 
+                footer.style.transform = 'scale(1.02)'; 
+                footer.querySelector('h3').style.transform = 'scale(1.1)'; 
+                footer.querySelectorAll('p').forEach(p => {
+                    p.style.transform = 'scale(1.05)'; 
+                });
+            });
+    
+            footer.addEventListener('mouseout', () => {
+                footer.style.backgroundColor = '#555555'; 
+                footer.style.transform = 'scale(1)'; 
+                footer.querySelector('h3').style.transform = 'scale(1)'; 
+                footer.querySelectorAll('p').forEach(p => {
+                    p.style.transform = 'scale(1)'; 
+                });
+            });
+    
+            const contactForm = document.getElementById('contactForm');
+            const responseMessage = document.getElementById('responseMessage');
+    
+            contactForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                responseMessage.textContent = "Mensagem enviada com sucesso!";
+                responseMessage.style.display = 'block';
+                responseMessage.style.color = 'green';
+                contactForm.reset();
+            });
+        </script>
+    </body>
+</html>
